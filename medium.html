@@ -45,6 +45,7 @@
             transition: all 0.3s ease-in-out 0.2s;
         }
         button:hover {
+            cursor: pointer;
             background-image: url('box1.jpg');
             background-size: cover;
             font-size:3rem;
@@ -55,6 +56,9 @@
     </style>
 </head>
 <body >
+    <audio autoplay loop>
+        <source src="1.mp3" type="audio/mp3" />
+      </audio>
     <div class="head">
         <h1> GIFT HUNT </h1>
     </div>
@@ -86,6 +90,9 @@
     </div>
     
     <Script>
+        const audio1=new Audio('click.mp3');
+        const audio2=new Audio('win.wav');
+        const audio3=new Audio('lose.wav');
         var r;
         var arr=new Array(16);
         for(var i=0;i<=15;i++){
@@ -112,17 +119,26 @@
         function check(n){
             score++;
             document.getElementById(n).innerHTML=arr[n];
-            document.getElementById(n).style["background"]="FFFFFF";
             if(arr[n]=="🎁"){
                 count++;
                 if(count==3){
+                audio2.play();
                 alert("You Won In "+score+" Tries");
                 window.location.href = window.location.href;}
             }else if(arr[n]=="☠️"){
+                audio3.play();
                 alert("You lost,You clicked on bomb.Have a Good Luck in next attempt");
                 window.location.href = window.location.href;
             }
         }
+        const audio = new Audio("click.mp3");
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    audio.play();
+  });
+});
     </Script>
 </body>
 </html>
